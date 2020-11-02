@@ -1,0 +1,604 @@
+1-)  GİTHUB PROJE OLUŞTURMA
+
+-- git init
+
+proje dizinine gelip bu kodu yazarak projeyi github ile initialize ediyoruz
+
+-- ls -a 
+
+.git dosyasını ve diğer gizli dosyaları  görmemize yarar  (-a : another)
+
+******************************************************************************************
+
+2-) COMMIT ve LOG
+
+-- git add .
+
+proje dizininin içerisindeki bütün dosyaları geçiş alanına ekler (staging area)
+
+-- git commit -m "first area"
+
+projedeki değişikliği staging area ya kayıt edince bu şekilde not alıyoruz 
+
+-- git log
+
+projedeki değişiklikleri görmek için bu kodu yazıyoruz
+
+******************************************************************************************
+
+3-) STATUS
+
+-- git status
+
+proje dizini içerisinde herhangi bir değişiklik var mı yok mu onu gösterir
+
+NOT:
+dosya ismi kırmızı yazıyorsa proje içerisinde olduğunu ve değişikliğe uğraadığını gösterir
+dosya ismi yeşil yazıyosa staging area içerisinde olduğunu ve commit edilebilir olduğunu gösterir
+
+-- git commit -m "cikarma gorevi eklendi"
+
+yapilan değişikliği staging area ya aktardık
+
+-- git log
+
+yapılan değişiklikleri görüntüledik
+
+******************************************************************************************
+
+4-) GIT İŞ AKIŞI
+
+git 3 bölümden oluşur
+
+LOCAL
+STAGE
+REPO
+
+LOCAL  ---> bizim çalışma alanımız
+STAGE ---> bizim geçiş alanımız (localdeki dosyalarımızı buraya 'git add .' ile göndeririz)
+REPO   ---> bizim github depomuz (stage alanındaki dosyalarımızı buraya "git commit -m 'task' ")   diye göndeririz
+
+******************************************************************************************
+
+5-) DIFF & Değişiklikler
+
+-- git status
+
+local dizin üzerindeki olan değişikliği görüyoruz
+
+-- git diff main.php
+
+bu kod ile main.php üzerinde değişiklik yapıldığında değişiklik olan kodu ekrana basacaktır
+
+
+NOT: 
+
+-- git diff
+
+bu kod depo ile çalışma dizini arasındaki kodları gösterir
+
+-- git diff --staged
+
+bu kod depo ile staged arasındaki farklılıkları gösterir
+
+******************************************************************************************
+
+6-) DOSYA SİLME (rm)
+
+dosyamızı manuel olarak sildik
+
+-- git status
+
+komutunu yazarak dosyanın silindiğini gördük
+
+-- git rm dosya.php
+
+dosya.php dosyasını localden sildik
+
+-- git add .
+
+değişiklikleri stage üzerine ekledik
+
+-- git commit -m "dosya.php dosyası silindi"
+
+komutu ile de işlemi repo ya gönderdik
+
+
+-	-	-	-
+
+-- git rm -r klasor/
+
+bu kod ise klasör altındaki dosyaları ve klasörü siler
+
+-- git status
+
+dosya içerisindeki değişiklikleri gördük
+
+-- git add .
+
+dosyaları stage içerisine attık
+
+-- git commit -m "dosya ve klasör silme işlemleri tamamlandı"
+
+dosyaları repoya attık
+
+
+NOT: 
+-- git status
+
+komutunu yazarak silme işlemi ve diğeğr işlemleri git komutu üzeirnden nasıl yapacağımız bilgisini alabiliriz
+
+******************************************************************************************
+
+7-) DOSYA İSMİ DEĞİŞTİRME &  TAŞIMA (mv)
+
+-- git mv deneme.php denem.php
+
+deneme.php isimli dosyayı denem.php olarak değiştirdik
+
+-- git status
+
+değişiklikleri gördük
+
+-- git add .
+
+değişiklikleri stage içerisine attık
+
+-- git commit -m "dosya isimlendirme işlemini yaptık"
+
+değişiklikleri repo ya kaydettik
+
+-	-	-	-
+
+-- git mv deneme.php deneme/yeni.php
+
+dosyayı yeni.php olarak deneme klasörünün içerisine kaydettik
+
+-- git status
+
+değişiklikleri görüntüledik
+
+-- git add .
+
+değişiklikleri stage içerisine ekleyelim
+
+-- git commit -m "dosya klasör içerisine taşındı"
+
+değişiklikleri repo ya aktardık 
+
+******************************************************************************************
+
+8-) DEĞİŞİKLİĞİ GERİ ALMA (LOCAL)
+
+-- git init
+
+projeye githhub entegrasyonunu yapalım
+
+index.php dosyası oluşturalım ve içine yazı yazalım
+
+-- git status
+
+işlemleri gördük
+
+-- git add .
+
+stage kısmına aktardık
+
+-- git commit -m "index.php dosyası oluşturduk"
+
+git deposuna ekleyelim
+
+index.php dosyası içeriğine "asd" yazalım. Ama yanlış yazdık diyelim :) commit veya add yapmayalım local üzerinde değiştircez
+
+--> git checkout -- index.php         kodunu yazalım
+
+yaptığımız değişiklikler geri alındı :)
+
+
+örneğin dosyayı silelim
+
+-- git rm index.php
+
+dosyayı sildik
+
+--> git checkout -- index.php
+
+dosyamız geri alındı
+
+******************************************************************************************
+
+9-) DEĞİŞİKLİKLERİ GERİ ALMA (stage)
+
+dosya içeriğini sildik diyelim
+
+-- git status
+
+işlemleri görüntüledik
+
+-- git add .
+
+stage içerisine ekledik
+
+Dur 1 dakika ! Yanlış işlem gerçekleştirdik. Hemen local e taşı
+
+--> git restore --staged index.php
+
+local dizine taşıdık
+
+--> git checkout -- index.php
+
+dosya içeriği eski haline geldi. Gerekli işlemleri de tamamladık
+
+-- git status
+
+işlemleri görüntüledik
+
+-- git add .
+
+stage e ekledik
+
+-- git commit -m "stage üzerinden değişiklikleri geri aldık"
+
+git deposuna gönderdik
+
+******************************************************************************************
+
+10-) GİTHUB A PROJE GÖNDERME (PUSH)
+
+-- git init
+
+projeyi github ile bağlayalım ve gerekli değişiklikleri yapalım
+
+-- git add .
+
+dosyaları geçiş dizinine aktaralım
+
+-- git commit -m "islem-#1" 
+
+yapılmış görevin ismini verelim
+
+-- git branch -M main (main dersek bu kendi master a ekler. Farklı bir branch ile çalışacaksak eğer main yerine o branch ismini yazmamız lazım)
+
+belirllenen proje dalı seçildi
+
+-- git push -u origin main (main yazan yere branch ismi yazılacak. Farklı bir branch ile çalışılıyorsa onun adının girilmesi gerek)
+
+projemiz belirlenen branch e push edildi
+
+
+---------------------------------------------------------------
+
+git remote -v ==========> remote adresi öğrenmeye yarar
+
+
+******************************************************************************************
+
+11-) BRANCHES (DALLAR)
+
+bu kısımın amacı birden fazla kullanıcı proje geliştirirken farklı dallarla çalışır. Bu sayede proje üzerindeki birçok kullanıcının dosyasını repo yöneticisi
+kontrolden geçirdikten sonra merge edip master repo içerisine dahil eder
+
+şimdi gelelim bu branch oluşturma ve diğer işlemlere
+
+1-) %main seçeneğinden bir branch create ediyoruz
+
+2-) yeni oluşturduğumuz branch'i seçeceğiz
+
+3-) Add Fİle seçeneğinden yeni bir dosya oluşturacağız (Dosya adı ve açıklama, içerik ...)
+
+4-) commit kısmında da commit notunu ayarlayacağız
+
+5-) Branches kısmına tıklayalım
+
+6-) All Branches seçeneğine tıklıyoruz
+
+7-) New Pull Requests seçeneğine geliyoruz
+
+8-) Create Pull Requests seçeneğine tıklıyoruz
+
+9-) Merge Pull Request yazısına tıklıyoruz
+
+10-) Confirm seçeneğine tıklıyoruz (Branch merge işlemini tamamlamak için)
+
+Giz üzerindeki dosyalar dizinde yok ise
+ve biz de belli bir branch üzerinden çalışacağımız için
+
+******************* git pull
+
+seçeneği ile dosyaları getiriyoruz
+
+-	-	-	-	-
+
+**************************************** Branch oluşturmak için ****************************************
+
+-- git branch branch_name
+
+kodunu yazmamız lazım
+
+-	-	-	-	-
+
+**************************************** İki branch arasındaki farkları görmek için ****************************************
+
+-- git diff branch_name1 branch_name2
+
+yazmamız lazım
+
+
+NOT: master branch ile diğer bir branch i karşılaştıracaksak ilk parametre master olacak :)
+
+-	-	-	-	-
+
+**************************************** Dal Değiştirme ****************************************
+
+-- git checkout branch_name
+
+yazmamız lazım
+
+**************************************** İki Branch Birleşimi ****************************************
+
+-- git merge branch1 branch2
+
+bu şekilde de branch1 ve branch2 yii birleştirmiş oluyoruz
+
+
+
+---------------------------------------------------------------------------------------------
+
+
+git branch -d (branch_name)   ----------------------------> branch silmeye yarayan kod
+
+git branch -D (branch_name)  ----------------------------> branch silmeye yarar ama bu silme işlemini zorlayarak yapar
+
+******************************************************************************************
+
+12-) .GITTIGNORE KULLANIMI
+
+istenmeyen dosyaların .gittignore dosyası içerisine dosya adını yazarsak 
+github bu dosyaların takibini yapmayacaktır.
+
+----- .gittignore
+
+dosyası oluşturduktan sonra içerisine örnek vermek gerekirse
+
+----- asd.html
+
+yazarsak asd.html gizlenecektir.
+
+-	-	-	-	-	-	
+
+belgeler klasörünün altındaki her şeyi gizleyeceksek
+
+---- belgeler/* 
+
+yazmamız lazım
+
+-	-	-	-	-	-
+
+belgeler klasörü içerisindeki bir her dosyanın dahil ama yalnız birisinin
+dahil olmamasını istiyorsak
+
+belgeler/*
+!belgeler/asd.html
+
+kodunu yazmamız lazım :)
+-	-	-	-	-	-
+
+******************************************************************************************
+
+13-) README.md KULLANIMI
+
+Readme.md nin amacı diğer insanllar projemizi incelerken kodları okumadan projenin amacını anlamasını
+sağlamaktır
+
+Readme.md içerisine yazı yazma kurallarına gelecek olursak
+
+# Yazı 	= en büyük başlık
+###### Yazı = en küçük başlık
+
+**Yazı** = Kalın Yazı
+*Yazı* = İtalik Yazı
+<br/> = Alt Satıra Geçer
+
+[Link Adı](Link URL) = Link Vermeye Yarar
+![Resim Adı](Resim URL) = Resim Eklemeye Yarar
+
+******************************************************************************************
+
+14-) WATCH - STAR VE FORK
+
+
+--WATCH = Watch seçeneği adından da anlaşılacağı üzere izlemek demektir. Repo üzerinde her değişikliği
+görürüz. Bunun sonucunda bizim ekranımıza ve aynı zamanda mailimize bildirim gelir. Hangi repo olursa olsun farketmez
+
+-	-	-	-	-	-	-	-	-
+
+--STAR = Adından da anlaşılacağı üzere favori demektir. Favoriler bölümümüzde yer eder ve bir sonraki inceleme 
+isteğimizde daha çabuk ulaşabiliriz
+
+Account > Your Stars kısmından star dediklerimiz repolar görüntülenir
+
+-	-	-	-	-	-	-	-	-
+
+--FORK = Bu seçeneğin ikonu tanıdık gelecektir. Çünkü branch'e benziyor. Branch'lerde amaç ne idi ? Birden fazla
+geliştiricinin master in kopyasını almaktı
+
+Burada ise amaç başka bir kişinin yani geliştiricinin projesini bizim hesabımıza bir kopyasını almaktır
+
+-	-	-	-	-	-	-	-	-
+
+******************************************************************************************
+
+15-) ISSUES (Problemler)
+
+Proje üzerinde herhangi bir problem veya akla takılan bir şey olursa
+
+-	-	-	-	-	-	-	-	-	-	-	-
+
+1-) ""Issues"" kısmına tıklayalım
+
+2-) ""New Issues"" yazısına basalım
+
+3-) ""Başlık ve Açıklama"" kısmını dolduralım
+
+4-) ""Labels"" kısmından prooblem tipi seçelim
+
+5-) ""Submit New Issue"" kısmına basalım
+
+6-) ""Issue"" kapatmak için ""ıssue"" detay sayfasına girip ""Close Issue"" yazıp ""Issue"" yi kapatabiliriz
+
+-	-	-	-	-	-	-	-	-	-	-	-
+
+******************************************************************************************
+
+16-) GIT VERSION DEGİSTİRME
+
+git versionları arasında geçiş yapma işlemidir. yapmamız gereken işlem şudur
+
+-- git log
+
+bu kodu yazınca karşımıza versiyonlar listelenir. Gitmek iistediğimiz versiyon 2 ise
+
+
+-- git checkout (version_hash_kodu)
+
+sondaki nokta çok önemlidir. Eğer koyulmazsa diğer sonuçlara yol açabilir.
+nokta koymamızın amacı ise o versiyon iççersindeki tüm dosyaları bize getirmesini sağlamaktır
+
+**********************************************************************************************************************************************************
+**********************************************************************************************************************************************************
+**********************************************************************************************************************************************************
+
+17-) AMEND ve REVERT 
+
+**AMEND
+      Commit mesajını değiştirmek için kullanılır. Mesela commit adını yanlış verdik diyelim. Commit ettikten sonra
+     	
+--> git commit --amend
+
+diyerek aynı commitin içinde olduğumuz için VİM açılacak. O kısımdan değiştirme şansımız var :)
+
+--> :wq yazarak işlem tamamlanıyor
+
+
+**REVERT 
+     Bir commit olusturuldu diyelim ama bu geçici olsun diyelim. Bu commiti silmek için
+
+--> git log --oneline
+
+kodunu yazarız ve silinmek istenen commitin 7 haneli kodu alınır. Sonra
+
+--> git revert (hash_code)
+
+yazdıktan sonra vim açılacak burada
+
+
+*****************> i tuşuna bas > ESC ye bas > :wq yaz
+
+sonra commit siliniyor :) işlem tamamdır
+
+******************************************************************************************
+
+18-) FORK & PULL REQUEST
+
+****FORK
+      herhangi bir kullanıcının repo sunu forklayıp bu projeyi kendi hesabımıza kopyasını alıyoruz. 
+     
+     Daha sonra "git clone" ile forkladığımız (bizim hesabımızda olan repoyu) indiriyoruz
+
+     Herhangi bir dosya ekleyelim ve bunu da "commit" edelim
+
+
+****PULL REQUEST
+     Fork konusunda başka bir kullanıcının reposunun kopyasını almayı görmüştük
+     
+     Şimdi ise değişiklikleri yaptıktan sonra bu kullanıcının (fork aldığımız kullanıcının) hesabına istersek "PULL REQUEST" edebiliyoruz.
+
+     Bu da demek oluyor ki fork aldığımız kullanıcının da reposunda değişiklik sağlamaktır.
+
+     ********* pull request > create pull request *********  
+
+     ile değişiklik yaptırabiliyoruz.
+
+
+
+     Daha sonra bu "pull request" işleminden sonra fork alınan kullanıcının reposunda "pull request" işlemi mesajı gidiyor. İsterse
+     bizim pull request i merge edebilir :)
+
+     Merge etmeden önce  "File Changed" ile değişiklikleri görebilir.
+
+     Bu repo sahibi ise bu farkları görebilir
+
+******************************************************************************************
+
+19-) FETCH & PULL
+
+****FETCH
+      Uzak sunucu üzerinden dosya alınca "fetch" ile bunların hepsini ayrı ayrı referans noktası olarak indirir. Yani remote branch'daki
+      değişiklikleri indirir. Fetch olayından sonra
+
+      "git merge branch1 branch2" yazılır
+
+
+****PULL
+      Bu komutun fetch'den farkı dosya indirilirken local'e entegre eder :). Fetch'deki gibi indikten sonra tekrar merge işlemine gerek kalmaz
+
+      "git pull"
+       
+******************************************************************************************
+
+20-) GIT STASH
+
+Proje üzerinde çalışırken varolan işi bir kenara bırakıp başka bir işi yapmamıza olanak sağlar.
+
+Belli bir işi yaptıktan sonra stash komutuyla önceki işe geri dönebiliriz.
+
+---> git stash save "stash message" 
+
+komutuyla stash oluşturabiliriz.
+
+
+-	-	-	-	-	
+
+Stash leri görüntülemek için
+
+----> git stash list
+
+-	-	-	-	-	
+
+*****************************************************************************
+
+NOT: Son kaydedilen stash'in index numarası "0" olarak kaydedilir.
+
+*****************************************************************************
+
+-	-	-	-	-
+
+Stash silmek için
+
+----> git stash drop stash_id
+
+-	-	-	-	-
+
+Silinen stash i geri almak için
+
+----> git stash pop stash_id
+
+-	-	-	-	-
+
+******************************************************************************************
+
+21-) GIT ALIAS
+
+kullandığımız git komutlarını kısaltmak için kullanılan bir komuttur. Config dosyası altında
+alias adı altında komutları düzenlememizi sağlar
+
+Örnek olarak "status" komutunu kısaltalım
+
+---> git config --global alias.st status     (bu koddan sonra artık status yerine "st" ifadesini kullanabiliriz)
+---> git config --global alias.co "commit -m" (bu koddan sonra "commit -m" yerine co ifadesini kullanabiliriz)
+
+******************************************************************************************
+
+22-) GIT DIFF
+
+Dosya üzerindeki yapılmış olan değişiklikleri görmemizi sağlar :)
