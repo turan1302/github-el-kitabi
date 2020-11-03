@@ -459,7 +459,7 @@ git versionları arasında geçiş yapma işlemidir. yapmamız gereken işlem ş
 bu kodu yazınca karşımıza versiyonlar listelenir. Gitmek iistediğimiz versiyon 2 ise
 
 
--- git checkout (version_hash_kodu)
+-- git checkout (version_hash_kodu) -- .
 
 sondaki nokta çok önemlidir. Eğer koyulmazsa diğer sonuçlara yol açabilir.
 nokta koymamızın amacı ise o versiyon iççersindeki tüm dosyaları bize getirmesini sağlamaktır
